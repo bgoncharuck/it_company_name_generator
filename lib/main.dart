@@ -25,6 +25,7 @@ class IamRoot extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => SettingsModel(),
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: AppText.title,
         home: const SettingsScreen(),
       ),
