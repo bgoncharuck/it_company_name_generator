@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
+import 'package:hydrated_bloc/hydrated_bloc.dart'
+    show HydratedBloc, HydratedStorage;
 import 'package:path_provider/path_provider.dart';
-import 'common/text.dart';
+import 'package:it_company_name_generator/model/settings_model.dart';
+import 'package:it_company_name_generator/common/text.dart';
 import 'routes.dart';
 
 void main() async {
@@ -19,9 +22,12 @@ class IamRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: AppText.title,
-      home: const SettingsScreen(),
+    return BlocProvider(
+      create: (BuildContext context) => SettingsModel(),
+      child: const MaterialApp(
+        title: AppText.title,
+        home: const SettingsScreen(),
+      ),
     );
   }
 }
