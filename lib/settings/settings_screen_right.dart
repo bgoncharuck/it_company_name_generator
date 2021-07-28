@@ -47,7 +47,7 @@ class SettingsScreenRight extends StatelessWidget {
           ),
           // Restore
           IconButton(
-            onPressed: () {},
+            onPressed: () => BlocProvider.of<SettingsModel>(context).undo(),
             icon: Icon(
               Icons.undo,
               color: Colors.orange,

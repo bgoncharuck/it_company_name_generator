@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:replay_bloc/replay_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 typedef SettingsModelState = List<String>;
@@ -22,12 +23,12 @@ const SettingsModelState _defaultSettings = [
 ];
 
 @immutable
-abstract class SettingsModelEvent extends Equatable {
+abstract class SettingsModelEvent extends ReplayEvent {
   SettingsModelState get settings;
 }
 
 @immutable
-class DefaultSettingsEvent implements SettingsModelEvent {
+class DefaultSettingsEvent extends Equatable implements SettingsModelEvent {
   final SettingsModelState settings = _defaultSettings;
   const DefaultSettingsEvent();
 
@@ -39,7 +40,7 @@ class DefaultSettingsEvent implements SettingsModelEvent {
 }
 
 @immutable
-class NewSettingsEvent implements SettingsModelEvent {
+class NewSettingsEvent extends Equatable implements SettingsModelEvent {
   final SettingsModelState settings;
   const NewSettingsEvent(this.settings);
 
@@ -50,8 +51,8 @@ class NewSettingsEvent implements SettingsModelEvent {
   bool get stringify => false;
 }
 
-class SettingsModel
-    extends HydratedBloc<SettingsModelEvent, SettingsModelState> {
+class SettingsModel extends HydratedBloc<SettingsModelEvent, SettingsModelState>
+    with ReplayBlocMixin {
   SettingsModel() : super(_defaultSettings);
 
   @override
