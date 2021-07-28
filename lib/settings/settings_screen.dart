@@ -11,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Stack(
-          children: const [
+          children: [
             const Positioned.fill(
               child: const AppBackGround(),
             ),
