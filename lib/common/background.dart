@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class AppBackGround extends StatelessWidget {
   const AppBackGround({Key? key}) : super(key: key);
@@ -8,25 +9,64 @@ class AppBackGround extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-        ClipPath(
-          clipper: _TopClipper(),
-          child: Container(
-            height: screenHeight / 3,
-            color: Colors.orange.shade100,
+        Align(
+          alignment: Alignment.topLeft,
+          child: Stack(
+            children: [
+              ClipPath(
+                clipper: const _WawyClipper(),
+                child: Container(
+                  height: screenHeight / 4,
+                  color: Colors.orange.shade100,
+                ),
+              ),
+              ClipPath(
+                clipper: const _WawyClipper(),
+                child: Container(
+                  height: screenHeight / 4.5,
+                  color: Colors.orange,
+                ),
+              ),
+              ClipPath(
+                clipper: const _WawyClipper(),
+                child: Container(
+                  height: screenHeight / 12,
+                  color: Colors.deepOrange.shade400,
+                ),
+              ),
+            ],
           ),
         ),
-        ClipPath(
-          clipper: _TopClipper(),
-          child: Container(
-            height: screenHeight / 3.5,
-            color: Colors.orange,
-          ),
-        ),
-        ClipPath(
-          clipper: _TopClipper(),
-          child: Container(
-            height: screenHeight / 9,
-            color: Colors.deepOrange.shade500,
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.rotationZ(pi),
+            child: Stack(
+              children: [
+                ClipPath(
+                  clipper: const _WawyClipper(),
+                  child: Container(
+                    height: screenHeight / 4,
+                    color: Colors.lightBlue.shade100,
+                  ),
+                ),
+                ClipPath(
+                  clipper: const _WawyClipper(),
+                  child: Container(
+                    height: screenHeight / 4.5,
+                    color: Colors.lightBlue,
+                  ),
+                ),
+                ClipPath(
+                  clipper: const _WawyClipper(),
+                  child: Container(
+                    height: screenHeight / 12,
+                    color: Colors.blue.shade500,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -34,8 +74,8 @@ class AppBackGround extends StatelessWidget {
   }
 }
 
-class _TopClipper extends CustomClipper<Path> {
-  const _TopClipper();
+class _WawyClipper extends CustomClipper<Path> {
+  const _WawyClipper();
   @override
   Path getClip(Size size) {
     final path = new Path();
@@ -79,23 +119,6 @@ class _TopClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
-
-class _Bottom extends CustomClipper<Path> {
-  const _Bottom();
-  @override
-  Path getClip(Size size) {
-    final path = new Path();
-    path.lineTo(0, size.height);
-
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
+    return false;
   }
 }
