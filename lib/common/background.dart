@@ -41,30 +41,36 @@ class _TopClipper extends CustomClipper<Path> {
     final path = new Path();
     path.lineTo(0, size.height);
 
-    final firstStart = Offset(size.width * 0.1, size.height);
-    final firstEnd = Offset(size.width * 0.15, size.height * 0.6);
-    path.quadraticBezierTo(
-        firstStart.dx, firstStart.dy, firstEnd.dx, firstEnd.dy);
-
-    final secondStart = Offset(size.width * 0.17, size.height * 0.5);
-    final secondEnd = Offset(size.width * 0.4, size.height * 0.4);
-    path.quadraticBezierTo(
-        secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
-
-    final thirdStart = Offset(size.width * 0.5, size.height * 0.35);
-    final thirdEnd = Offset(size.width * 0.6, size.height * 0.4);
-    path.quadraticBezierTo(
-        thirdStart.dx, thirdStart.dy, thirdEnd.dx, thirdEnd.dy);
-
-    final fourthStart = Offset(size.width * 0.7, size.height * 0.38);
-    final fourthEnd = Offset(size.width * 0.8, size.height * 0.2);
-    path.quadraticBezierTo(
-        fourthStart.dx, fourthStart.dy, fourthEnd.dx, fourthEnd.dy);
-
-    final fifthStart = Offset(size.width * 0.9, size.height * 0.18);
-    final fifthEnd = Offset(size.width * 0.91, size.height * 0.1);
-    path.quadraticBezierTo(
-        fifthStart.dx, fifthStart.dy, fifthEnd.dx, fifthEnd.dy);
+    final List<List<Offset>> dots = [
+      [
+        Offset(size.width * 0.1, size.height),
+        Offset(size.width * 0.15, size.height * 0.6),
+      ],
+      [
+        Offset(size.width * 0.17, size.height * 0.5),
+        Offset(size.width * 0.4, size.height * 0.4),
+      ],
+      [
+        Offset(size.width * 0.5, size.height * 0.35),
+        Offset(size.width * 0.6, size.height * 0.4),
+      ],
+      [
+        Offset(size.width * 0.7, size.height * 0.38),
+        Offset(size.width * 0.8, size.height * 0.2),
+      ],
+      [
+        Offset(size.width * 0.9, size.height * 0.18),
+        Offset(size.width * 0.91, size.height * 0.1),
+      ],
+    ];
+    dots.forEach((dot) {
+      path.quadraticBezierTo(
+        dot[0].dx,
+        dot[0].dy,
+        dot[1].dx,
+        dot[1].dy,
+      );
+    });
 
     path.lineTo(size.width, 0);
     path.close();
