@@ -9,14 +9,8 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Stack(
-          children: const [
-            const Positioned.fill(
-              child: const AppBackGround(),
-            ),
-            const Align(
-              alignment: Alignment.center,
-              child: const Text("kek"),
-            ),
+          children: [
+            const AppBackGround(),
           ],
         ),
       ),
