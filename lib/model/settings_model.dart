@@ -20,6 +20,14 @@ const SettingsModelState _defaultSettings = [
   "hack",
   "jedi",
   "wizard",
+  "info",
+  "gaming",
+  "game",
+  "king",
+  "royal",
+  "ui",
+  "star",
+  "nix",
 ];
 
 @immutable

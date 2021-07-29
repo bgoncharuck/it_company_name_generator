@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:it_company_name_generator/common/rightside_buttons.dart';
+import 'package:it_company_name_generator/common/rightside_buttons_icon.dart';
 import 'package:it_company_name_generator/model/settings_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,17 +23,9 @@ class SettingsScreenRight extends StatelessWidget {
             onPressed: () => BlocProvider.of<SettingsModel>(context).add(
               RestoreDefaultSettingsEvent(),
             ),
-            icon: Padding(
-              padding: const EdgeInsets.only(
-                right: 16.0,
-                top: 8.0,
-                bottom: 8.0,
-              ),
-              child: Icon(
-                Icons.settings_backup_restore_rounded,
-                color: Colors.red,
-                size: 42.0,
-              ),
+            icon: const RightSideButtonIcon(
+              icon: Icons.settings_backup_restore_rounded,
+              color: Colors.red,
             ),
           ),
           // New
@@ -46,33 +39,17 @@ class SettingsScreenRight extends StatelessWidget {
                 insetPadding: EdgeInsets.all(0),
               ),
             ),
-            icon: Padding(
-              padding: const EdgeInsets.only(
-                right: 16.0,
-                top: 8.0,
-                bottom: 8.0,
-              ),
-              child: Icon(
-                Icons.add,
-                color: Colors.green,
-                size: 42.0,
-              ),
+            icon: const RightSideButtonIcon(
+              icon: Icons.add,
+              color: Colors.green,
             ),
           ),
           // Restore
           IconButton(
             onPressed: () => BlocProvider.of<SettingsModel>(context).undo(),
-            icon: Padding(
-              padding: const EdgeInsets.only(
-                right: 16.0,
-                top: 8.0,
-                bottom: 8.0,
-              ),
-              child: Icon(
-                Icons.undo,
-                color: Colors.orange,
-                size: 42.0,
-              ),
+            icon: const RightSideButtonIcon(
+              icon: Icons.undo,
+              color: Colors.orange,
             ),
           ),
         ],

@@ -1,7 +1,7 @@
 name: it_company_name_generator
-description: A new Flutter project.
+description: a joke application to help it company choose the name
 publish_to: 'none' 
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ">=2.13.0 <3.0.0"
@@ -10,23 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # needed for settings_model
+  equatable: ^2.0.3
+  path_provider: ^2.0.2
   flutter_bloc: ^7.0.1
   hydrated_bloc: ^7.0.1
   replay_bloc: ^0.0.2
-  equatable: ^2.0.3
-  path_provider: ^2.0.2
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  # one-liner for navigator animation
+  proste_route_animation: ^2.0.2
 
 flutter:
   uses-material-design: true
-
-analyzer:
-  strong-mode: true
-  language:
-    enableSuperMixins: true
-  errors:
-    mixin_inherits_from_not_object: ignore
 

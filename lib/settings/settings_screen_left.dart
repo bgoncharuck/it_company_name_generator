@@ -18,7 +18,7 @@ class SettingsScreenLeft extends StatelessWidget {
                 onPressed: () => BlocProvider.of<SettingsModel>(context).add(
                   RemoveByIndexSettingsEvent(index),
                 ),
-                icon: Icon(Icons.delete),
+                icon: const Icon(Icons.delete),
               ),
               const SizedBox(
                 width: 16.0,

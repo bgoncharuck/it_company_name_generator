@@ -27,7 +27,8 @@ class IamRoot extends StatelessWidget {
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: AppText.title,
-        home: const SettingsScreen(),
+        initialRoute: Path.home,
+        onGenerateRoute: Path.generateRoute,
       ),
     );
   }
