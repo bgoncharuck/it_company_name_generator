@@ -20,12 +20,19 @@ class SettingsScreenRight extends StatelessWidget {
           // Default
           IconButton(
             onPressed: () => BlocProvider.of<SettingsModel>(context).add(
-              DefaultSettingsEvent(),
+              RestoreDefaultSettingsEvent(),
             ),
-            icon: Icon(
-              Icons.settings_backup_restore_rounded,
-              color: Colors.red,
-              size: 48.0,
+            icon: Padding(
+              padding: const EdgeInsets.only(
+                right: 16.0,
+                top: 8.0,
+                bottom: 8.0,
+              ),
+              child: Icon(
+                Icons.settings_backup_restore_rounded,
+                color: Colors.red,
+                size: 42.0,
+              ),
             ),
           ),
           // New
@@ -39,19 +46,33 @@ class SettingsScreenRight extends StatelessWidget {
                 insetPadding: EdgeInsets.all(0),
               ),
             ),
-            icon: Icon(
-              Icons.add,
-              color: Colors.green,
-              size: 48.0,
+            icon: Padding(
+              padding: const EdgeInsets.only(
+                right: 16.0,
+                top: 8.0,
+                bottom: 8.0,
+              ),
+              child: Icon(
+                Icons.add,
+                color: Colors.green,
+                size: 42.0,
+              ),
             ),
           ),
           // Restore
           IconButton(
             onPressed: () => BlocProvider.of<SettingsModel>(context).undo(),
-            icon: Icon(
-              Icons.undo,
-              color: Colors.orange,
-              size: 48.0,
+            icon: Padding(
+              padding: const EdgeInsets.only(
+                right: 16.0,
+                top: 8.0,
+                bottom: 8.0,
+              ),
+              child: Icon(
+                Icons.undo,
+                color: Colors.orange,
+                size: 42.0,
+              ),
             ),
           ),
         ],
@@ -102,11 +123,7 @@ class _AddSetingTextFieldState extends State<AddSetingTextField> {
             final settings = BlocProvider.of<SettingsModel>(context);
             if (!settings.state.contains(_textController!.text))
               settings.add(
-                NewSettingsEvent(
-                  List.from(
-                    settings.state,
-                  )..add(_textController!.text),
-                ),
+                NewSettingsEvent(_textController!.text),
               );
             Navigator.pop(context);
           },

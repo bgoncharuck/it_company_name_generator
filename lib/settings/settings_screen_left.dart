@@ -16,9 +16,7 @@ class SettingsScreenLeft extends StatelessWidget {
               // Remove
               IconButton(
                 onPressed: () => BlocProvider.of<SettingsModel>(context).add(
-                  NewSettingsEvent(
-                    List.from(state)..removeAt(index),
-                  ),
+                  RemoveByIndexSettingsEvent(index),
                 ),
                 icon: Icon(Icons.delete),
               ),
