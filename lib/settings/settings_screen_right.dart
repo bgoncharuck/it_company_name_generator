@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:it_company_name_generator/common/rightside_buttons.dart';
 import 'package:it_company_name_generator/common/rightside_buttons_icon.dart';
+import 'package:it_company_name_generator/common/get_user_input_popup.dart';
 import 'package:it_company_name_generator/model/settings_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +36,17 @@ class SettingsScreenRight extends StatelessWidget {
               barrierDismissible: true,
               builder: (BuildContext context) => Dialog(
                 backgroundColor: Colors.transparent,
-                child: addSettingPopUp(context),
+                child: getUserInputPopUp(
+                    context: context,
+                    maxLength: 32,
+                    inputType: TextInputType.text,
+                    onComplete: (String input) {
+                      final settings = BlocProvider.of<SettingsModel>(context);
+                      if (!settings.state.contains(input))
+                        settings.add(
+                          NewSettingsEvent(input),
+                        );
+                    }),
                 insetPadding: EdgeInsets.all(0),
               ),
             ),
@@ -56,54 +67,4 @@ class SettingsScreenRight extends StatelessWidget {
       ),
     ));
   }
-}
-
-Widget addSettingPopUp(BuildContext context) => Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 32.0,
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 32.0,
-        vertical: 16.0,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(64.0)),
-        color: Colors.white,
-      ),
-      child: const AddSetingTextField(),
-    );
-
-class AddSetingTextField extends StatefulWidget {
-  const AddSetingTextField({Key? key}) : super(key: key);
-
-  @override
-  _AddSetingTextFieldState createState() => _AddSetingTextFieldState();
-}
-
-class _AddSetingTextFieldState extends State<AddSetingTextField> {
-  TextEditingController? _textController;
-
-  @override
-  void initState() {
-    _textController = TextEditingController(text: "");
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) => Form(
-        child: TextFormField(
-          controller: _textController,
-          keyboardAppearance: Brightness.light,
-          autofocus: true,
-          maxLength: 32,
-          onEditingComplete: () {
-            final settings = BlocProvider.of<SettingsModel>(context);
-            if (!settings.state.contains(_textController!.text))
-              settings.add(
-                NewSettingsEvent(_textController!.text),
-              );
-            Navigator.pop(context);
-          },
-        ),
-      );
 }

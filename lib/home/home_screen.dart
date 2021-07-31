@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:it_company_name_generator/common/background.dart';
 import 'package:it_company_name_generator/routes.dart';
+import 'package:it_company_name_generator/model/generation_model.dart';
+import 'package:provider/provider.dart';
 import 'home_screen_left.dart';
 import 'home_screen_right.dart';
 
@@ -18,20 +20,23 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.settings, color: Colors.white),
       ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            const Positioned.fill(
-              child: const AppBackGround(),
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: const HomeScreenLeft(),
-            ),
-            const Align(
-              alignment: Alignment.centerRight,
-              child: const HomeScreenRight(),
-            ),
-          ],
+        child: ChangeNotifierProvider(
+          create: (context) => GenerationModel(),
+          child: Stack(
+            children: [
+              const Positioned.fill(
+                child: const AppBackGround(),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: const HomeScreenLeft(),
+              ),
+              const Align(
+                alignment: Alignment.centerRight,
+                child: const HomeScreenRight(),
+              ),
+            ],
+          ),
         ),
       ),
     );
