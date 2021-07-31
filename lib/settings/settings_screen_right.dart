@@ -34,20 +34,16 @@ class SettingsScreenRight extends StatelessWidget {
             onPressed: () => showDialog<void>(
               context: context,
               barrierDismissible: true,
-              builder: (BuildContext context) => Dialog(
-                backgroundColor: Colors.transparent,
-                child: getUserInputPopUp(
-                    context: context,
-                    maxLength: 32,
-                    inputType: TextInputType.text,
-                    onComplete: (String input) {
-                      final settings = BlocProvider.of<SettingsModel>(context);
-                      if (!settings.state.contains(input))
-                        settings.add(
-                          NewSettingsEvent(input),
-                        );
-                    }),
-                insetPadding: EdgeInsets.all(0),
+              builder: (BuildContext context) => GetUserInputPopUp(
+                maxLen: 32,
+                inputType: TextInputType.text,
+                onComplete: (String input) {
+                  final settings = BlocProvider.of<SettingsModel>(context);
+                  if (!settings.state.contains(input))
+                    settings.add(
+                      NewSettingsEvent(input),
+                    );
+                },
               ),
             ),
             icon: const RightSideButtonIcon(

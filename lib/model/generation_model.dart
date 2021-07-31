@@ -16,11 +16,6 @@ class GenerationModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setAmountOfNames(int amount) {
-    _amountOfNames = amount;
-    if (_names.isNotEmpty) this.generateNames(_tempState!);
-  }
-
   void generateNames(SettingsModelState settings) {
     if (settings.isEmpty) return;
 
