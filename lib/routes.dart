@@ -21,7 +21,7 @@ class Path {
         path = const SettingsScreen();
         break;
       default:
-        throw FormatException("Route not found");
+        throw RouteException("Route not found");
     }
     return ProsteRouteAnimation.fadeRoute(route: path);
   }
